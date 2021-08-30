@@ -5,19 +5,21 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+        AVB Coding Test: Trey Hughes
       </header>
+      <div class="inline-grid grid-cols-2 gap-4">
+        <div className="contacts object-left">
+          {/* this is the div that will hold the list of contacts & the button to add a new one */}
+          contacts
+        </div>
+        <div className="contactDetails object-right">
+          {/* this is the div that will hold more info about a selected contact */}
+          {/* this will allow customers to add and delete emails from a contact */}
+          contact details
+        </div>
+      </div>
+      
+      
     </div>
   );
 }
