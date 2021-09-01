@@ -47,7 +47,7 @@ class Contacts extends React.Component {
     render () {
         
         return (
-            <div className="grid gap-4 grid-cols-1" >
+            <div className="grid gap-4 grid-cols-1">
                 
                 {/* Title of section and Add Contact Button */}
                 <div className= "grid gap-2 grid-cols-3">
@@ -67,7 +67,7 @@ class Contacts extends React.Component {
                 
                 {/* figure out how to get this to render without moving the above portion up */}
 
-                {/* <form className="w-full max-w-sm gric gric-cols-1">
+                {/* <form className="w-full max-w-sm grid grid-cols-1">
                     <div className="md:flex md:items-center mb-6">
                         <div className="md:w-1/3">
                             <label class="block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4" for="inline-first-name">
@@ -75,7 +75,35 @@ class Contacts extends React.Component {
                             </label>
                         </div>
                         <div class="md:w-2/3">
-                            <input class="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500" id="inline-full-name" type="text" value="Jane Doe"></input>
+                            <input class="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-blue-400" id="inline-full-name" type="text"></input>
+                        </div>
+                    </div>
+                    <div className="md:flex md:items-center mb-6">
+                        <div className="md:w-1/3">
+                            <label class="block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4" for="inline-last-name">
+                                Last Name
+                            </label>
+                        </div>
+                        <div class="md:w-2/3">
+                            <input class="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-blue-400" id="inline-full-name" type="text"></input>
+                        </div>
+                    </div>
+                    <div className="md:flex md:items-center mb-6">
+                        <div className="md:w-1/3">
+                            <label class="block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4" for="inline-email">
+                                Email
+                            </label>
+                        </div>
+                        <div class="md:w-2/3">
+                            <input class="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-blue-400" id="inline-full-name" type="text"></input>
+                        </div>
+                    </div>
+                    <div class="md:flex md:items-center">
+                        <div class="md:w-1/3"></div>
+                        <div class="md:w-2/3">
+                        <button class="shadow bg-blue-400 hover:bg-blue-600 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded" type="button">
+                            Add Contact
+                        </button>
                         </div>
                     </div>
                 </form> */}
