@@ -25,7 +25,7 @@ class App extends React.Component {
     const contactSelected = this.state.contactSelected;
     return (
       <div className="App">
-        <header className="App-header">
+        <header className="App-header bg-blue-600 shadow-lg border-b-2">
           AVB Coding Test: Trey Hughes
         </header>
         <div className="main-grid inline-grid grid-cols-5 gap-4">
