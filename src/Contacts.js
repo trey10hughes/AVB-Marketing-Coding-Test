@@ -47,18 +47,18 @@ class Contacts extends React.Component {
     render () {
         
         return (
-            <div className="grid gap-4 grid-cols-1">
+            <div className="grid gap-4 grid-cols-1 grid-rows-12 static bg-blue-200 contactsDiv">
                 
                 {/* Title of section and Add Contact Button */}
-                <div className= "grid gap-2 grid-cols-3">
-                    <div className="object-left col-span-2 col-start-1">
-                        <p className="text-4xl">Contacts</p>
+                <div className= "grid gap-2 grid-cols-3 static row-start-1 static">
+                    <div className="object-left col-span-2 col-start-1 static">
+                        <p className="text-4xl static ">Contacts</p>
                     </div>
-                    <div className="object-right col-span-1 col-start-3">
+                    <div className="object-right col-span-1 col-start-3 static">
                         <button
-                            className="addContact bg-blue-400 hover:bg-blue-600 rounded-full h-10 w-10 items-center justify-center text-4xl text-white" 
+                            className="addContact bg-blue-400 hover:bg-blue-600 rounded-full h-10 w-10 static" 
                             onClick={this.handleAddClick}>
-                                +
+                                <p className="text-4xl text-white static">+</p>
                         </button>
                     </div>
                 </div>
@@ -67,7 +67,7 @@ class Contacts extends React.Component {
                 
                 {/* figure out how to get this to render without moving the above portion up */}
 
-                {/* <form className="w-full max-w-sm grid grid-cols-1">
+                <form className="w-full max-w-sm grid grid-cols-1 static">
                     <div className="md:flex md:items-center mb-6">
                         <div className="md:w-1/3">
                             <label class="block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4" for="inline-first-name">
@@ -106,9 +106,12 @@ class Contacts extends React.Component {
                         </button>
                         </div>
                     </div>
-                </form> */}
+                </form>
                 
-                <ContactList parentCallback={this.handleCallback}/>
+                <div className="overflow-y-scroll">
+                    <ContactList parentCallback={this.handleCallback}/>
+                </div>
+                
             </div>
         );
     }

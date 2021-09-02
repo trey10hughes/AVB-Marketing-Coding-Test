@@ -12,7 +12,10 @@
     animation: App-logo-spin infinite 20s linear;
   }
 }
-
+.contactsDiv {
+  height: 100%;
+  width: 100%;
+}
 .App-header {
   background-color: #282c34;
   height: 8vh;
