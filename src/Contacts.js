@@ -1,11 +1,13 @@
 import React from "react";
 import ContactList from "./ContactList";
+import AddContactForm from "./AddContactForm";
 
 class Contacts extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-
+            //used to control whether the add contact form is viewable or not. Default false
+            addContact: false
         };
     }
 
@@ -14,11 +16,22 @@ class Contacts extends React.Component {
         this.props.parentCallback(childData)
     }
 
-    handleAddClick() {
-        console.log("add contact")
+    handleToggleClick = (e) => {
+        console.log("toggle add contact")
+
+        if (this.state.addContact === false) {
+            this.setState({
+                addContact: true
+            })
+        } else {
+            this.setState({
+                addContact: false
+            })
+        }
+        
     }
 
-    handleSubmitClick() {
+    handleSubmitClick = (e) => {
         console.log("adding new contact from form")
         fetch("https://avb-contacts-api.herokuapp.com/contacts", {
             method: 'POST',
@@ -45,68 +58,39 @@ class Contacts extends React.Component {
     }
 
     render () {
-        
+        let addContact = this.state.addContact;
+        let contactForm = null;
+        let toggleButton =  <button
+                                className="addContact bg-blue-400 hover:bg-blue-600 rounded-full h-10 w-10 static" 
+                                onClick={this.handleToggleClick}>
+                                    <p className="text-4xl text-white static">+</p>
+                            </button>
+
+        if (addContact === true) {
+            contactForm = <AddContactForm/>;
+            
+            toggleButton =  <button
+                                className="addContact bg-red-400 hover:bg-red-600 rounded-full h-10 w-10 static" 
+                                onClick={this.handleToggleClick}>
+                                    <p className="text-4xl text-white static">-</p>
+                            </button>
+        }
         return (
-            <div className="grid gap-4 grid-cols-1 grid-rows-12 static bg-blue-200 contactsDiv">
+            <div className="grid gap-4 grid-cols-1 static bg-blue-200 contactsDiv">
                 
                 {/* Title of section and Add Contact Button */}
-                <div className= "grid gap-2 grid-cols-3 static row-start-1 static">
+                <div className= "grid gap-2 grid-cols-3 static static bg-green-100">
                     <div className="object-left col-span-2 col-start-1 static">
                         <p className="text-4xl static ">Contacts</p>
                     </div>
                     <div className="object-right col-span-1 col-start-3 static">
-                        <button
-                            className="addContact bg-blue-400 hover:bg-blue-600 rounded-full h-10 w-10 static" 
-                            onClick={this.handleAddClick}>
-                                <p className="text-4xl text-white static">+</p>
-                        </button>
+                        {toggleButton}
                     </div>
                 </div>
 
                 {/* Input form to add new contact */}
-                
+                {contactForm}
                 {/* figure out how to get this to render without moving the above portion up */}
-
-                <form className="w-full max-w-sm grid grid-cols-1 static">
-                    <div className="md:flex md:items-center mb-6">
-                        <div className="md:w-1/3">
-                            <label class="block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4" for="inline-first-name">
-                                First Name
-                            </label>
-                        </div>
-                        <div class="md:w-2/3">
-                            <input class="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-blue-400" id="inline-full-name" type="text"></input>
-                        </div>
-                    </div>
-                    <div className="md:flex md:items-center mb-6">
-                        <div className="md:w-1/3">
-                            <label class="block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4" for="inline-last-name">
-                                Last Name
-                            </label>
-                        </div>
-                        <div class="md:w-2/3">
-                            <input class="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-blue-400" id="inline-full-name" type="text"></input>
-                        </div>
-                    </div>
-                    <div className="md:flex md:items-center mb-6">
-                        <div className="md:w-1/3">
-                            <label class="block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4" for="inline-email">
-                                Email
-                            </label>
-                        </div>
-                        <div class="md:w-2/3">
-                            <input class="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-blue-400" id="inline-full-name" type="text"></input>
-                        </div>
-                    </div>
-                    <div class="md:flex md:items-center">
-                        <div class="md:w-1/3"></div>
-                        <div class="md:w-2/3">
-                        <button class="shadow bg-blue-400 hover:bg-blue-600 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded" type="button">
-                            Add Contact
-                        </button>
-                        </div>
-                    </div>
-                </form>
                 
                 <div className="overflow-y-scroll">
                     <ContactList parentCallback={this.handleCallback}/>
