@@ -68,7 +68,7 @@ class ContactList extends React.Component {
               return (
                 <ul>
                 {contacts.map(contact => (
-                  <li key={contact.id} id={contact.id} onClick={this.handleContactClick} className={(selected == contact.id ? "bg-blue-400 text-left text-xl px-8" : "hover:bg-blue-400 text-left text-xl px-8")}>
+                  <li key={contact.id} id={contact.id} onClick={this.handleContactClick} className={(selected == contact.id ? "bg-blue-600 text-left text-xl px-8 text-white" : "hover:bg-blue-600 hover:text-white text-left text-xl px-8")}>
                       {contact.firstName} {contact.lastName}
                   </li>
                 ))}

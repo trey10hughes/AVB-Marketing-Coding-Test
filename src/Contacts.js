@@ -35,7 +35,7 @@ class Contacts extends React.Component {
         let addContact = this.state.addContact;
         let contactForm = null;
         let toggleButton =  <button
-                                className="addContact bg-blue-400 hover:bg-blue-600 rounded-full h-10 w-10 static" 
+                                className="addContact bg-blue-600 hover:bg-blue-400 rounded-full h-10 w-10 static" 
                                 onClick={this.handleToggleClick}>
                                     <p className="text-4xl text-white static">+</p>
                             </button>
@@ -44,7 +44,7 @@ class Contacts extends React.Component {
             contactForm = <AddContactForm/>;
             
             toggleButton =  <button
-                                className="addContact bg-red-400 hover:bg-red-600 rounded-full h-10 w-10 static" 
+                                className="addContact bg-red-600 hover:bg-red-400 rounded-full h-10 w-10 static" 
                                 onClick={this.handleToggleClick}>
                                     <p className="text-4xl text-white static">-</p>
                             </button>

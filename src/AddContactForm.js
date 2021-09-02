@@ -80,7 +80,7 @@ class AddContactForm extends React.Component {
                     <div className="md:flex md:items-center">
                         <div className="md:w-1/3"></div>
                         <div className="md:w-2/3">
-                        <button onClick={this.handleAddContactClick} className="shadow bg-blue-400 hover:bg-blue-600 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded" type="button">
+                        <button onClick={this.handleAddContactClick} className="shadow bg-blue-600 hover:bg-blue-400 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded" type="button">
                             Add Contact
                         </button>
                         </div>
