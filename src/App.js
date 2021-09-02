@@ -28,12 +28,12 @@ class App extends React.Component {
         <header className="App-header">
           AVB Coding Test: Trey Hughes
         </header>
-        <div className="main-grid inline-grid grid-cols-4 gap-4">
-          <div className="contacts object-left col-span-1 col-start-1 bg-blue-100">
+        <div className="main-grid inline-grid grid-cols-5 gap-4">
+          <div className="contacts object-left col-span-1 col-start-1 shadow-2xl border-r-2">
             {/* this is the div that will hold the list of contacts & the button to add a new one */}
             <Contacts parentCallback={this.handleCallback}></Contacts>
           </div>
-          <div className="contactDetails object-right col-span-3 col-start-2">
+          <div className="contactDetails object-right col-span-4 col-start-2">
             {/* this is the div that will hold more info about a selected contact */}
             {/* this will allow customers to add and delete emails from a contact */}
             <ContactDetails contact={contactSelected}></ContactDetails>

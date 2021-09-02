@@ -31,32 +31,6 @@ class Contacts extends React.Component {
         
     }
 
-    handleSubmitClick = (e) => {
-        console.log("adding new contact from form")
-        fetch("https://avb-contacts-api.herokuapp.com/contacts", {
-            method: 'POST',
-            headers: {'Content-Type':'application/json'},
-            body: {
-                // hardcoded placeholder for now, will fill out with values from input
-                "firstName": "test",
-                "lastName": "test",
-                "emails": [
-                    "test@mail.com"
-                ]
-
-            }
-        })
-            .then(res => res.json())
-            .then(
-                (result) => {
-                    console.log(result)
-                },
-                (error) => {
-                    console.log(error)
-                }
-            )
-    }
-
     render () {
         let addContact = this.state.addContact;
         let contactForm = null;
@@ -76,20 +50,25 @@ class Contacts extends React.Component {
                             </button>
         }
         return (
-            <div className="grid gap-4 grid-cols-1 static bg-blue-200 contactsDiv">
+            <div className="grid gap-2 grid-cols-1 static contactsDiv">
                 
                 {/* Title of section and Add Contact Button */}
-                <div className= "grid gap-2 grid-cols-3 static static bg-green-100">
-                    <div className="object-left col-span-2 col-start-1 static">
+                <div className= "grid gap-2 grid-cols-1 static static flex items-center">
+                    <div className="object-left col-span-2 col-start-1 static flex items-left px-8">
                         <p className="text-4xl static ">Contacts</p>
+                        <div className="pl-8">
+                            {toggleButton}
+                        </div>
+                        
                     </div>
-                    <div className="object-right col-span-1 col-start-3 static">
-                        {toggleButton}
-                    </div>
+                    {/* <div className="object-right col-span-1 col-start-3 static flex items-left">
+                        
+                    </div> */}
                 </div>
 
                 {/* Input form to add new contact */}
-                {contactForm}
+                    {contactForm}
+                
                 {/* figure out how to get this to render without moving the above portion up */}
                 
                 <div className="overflow-y-scroll">

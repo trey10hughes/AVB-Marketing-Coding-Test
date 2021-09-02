@@ -6,7 +6,8 @@ class ContactList extends React.Component {
         this.state = {
             isLoaded: false,
             contacts: [],
-            error: null
+            error: null,
+            selected: null
         };
     }
 
@@ -32,6 +33,14 @@ class ContactList extends React.Component {
 
     handleContactClick = (e) => {
         console.log(e.target.id);
+        let id = e.target.id
+
+        this.setState({
+            selected: id
+        }, () => {
+            console.log(this.state)
+        })
+        
         fetch("https://avb-contacts-api.herokuapp.com/contacts/" + e.target.id)
             .then(res => res.json())
             .then(
@@ -48,7 +57,8 @@ class ContactList extends React.Component {
     }
 
     render () {
-        const { isLoaded, contacts, error } = this.state;
+        const { isLoaded, contacts, error, selected } = this.state
+        console.log(selected)
 
         if (error) {
             return <div>Error: {error.message}</div>;
@@ -56,10 +66,10 @@ class ContactList extends React.Component {
             return <div>Loading...</div>;
           } else {
               return (
-                <ul className="bg-red-100">
+                <ul>
                 {contacts.map(contact => (
-                  <li key={contact.id} id={contact.id} onClick={this.handleContactClick} className="hover:bg-blue-400 text-left">
-                    {contact.firstName} {contact.lastName}
+                  <li key={contact.id} id={contact.id} onClick={this.handleContactClick} className={(selected == contact.id ? "bg-blue-400 text-left text-xl px-8" : "hover:bg-blue-400 text-left text-xl px-8")}>
+                      {contact.firstName} {contact.lastName}
                   </li>
                 ))}
               </ul>
