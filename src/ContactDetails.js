@@ -34,23 +34,23 @@ class ContactDetails extends React.Component {
 
             // develop the UI first, then go back and add the functionality to edit and delete
 
-            <div className="flex grid gap-2 grid-cols-4 grid-rows-4 contactsDiv">
+            <div className="flex grid gap-2 grid-cols-4 grid-rows-4 grid-flow-col contactsDiv">
+                <div className="row-span-4"></div>
+
+                {/* first name input */}
                 <div className="bg-blue-100">{contactFirstName}</div>
-                <div className="bg-blue-200">{contactFirstName}</div>
+                {/* email list */}
+                <div className="bg-blue-100 row-span-2">{contactFirstName}</div>
+                {/* delete button */}
                 <div className="bg-blue-100">{contactFirstName}</div>
-                <div className="bg-blue-200">{contactFirstName}</div>
+
+                {/* last name input */}
+                <div className="bg-blue-100">{contactFirstName}</div>                
+                <div className="bg-blue-100 row-span-2">{contactFirstName}</div>
+                {/* cancel and delete buttons */}
                 <div className="bg-blue-100">{contactFirstName}</div>
-                <div className="bg-blue-200">{contactFirstName}</div>
-                <div className="bg-blue-100">{contactFirstName}</div>
-                <div className="bg-blue-200">{contactFirstName}</div>
-                <div className="bg-blue-100">{contactFirstName}</div>
-                <div className="bg-blue-200">{contactFirstName}</div>
-                <div className="bg-blue-100">{contactFirstName}</div>
-                <div className="bg-blue-200">{contactFirstName}</div>
-                <div className="bg-blue-100">{contactFirstName}</div>
-                <div className="bg-blue-200">{contactFirstName}</div>
-                <div className="bg-blue-100">{contactFirstName}</div>
-                <div className="bg-blue-200">{contactFirstName}</div>
+
+                <div className="row-span-4"></div>
             </div>
         )
     }
