@@ -2,6 +2,7 @@
 This is an application to edit view and edit contacts using a given API.
 
 This app was created using Create-React-App, and uses Tailwind CSS for styling.
+I learned Tailwind CSS on the fly as I built this out.
 
 To start the app use the command "npm run start" at the root directory of the project.
 
