@@ -6,14 +6,11 @@ class ContactDetails extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            //meant to hold all of the original values in case the user cancels their edits
-            originalFirstName: "",
-            originalLastName: "",
-            originalEmails: [],
-            
-            firstName: "",
-            lastName: "",
-            emails: []
+            firstName: this.props.contact.firstName,
+            lastName: this.props.contact.lastName,
+            emails: this.props.contact.emails,
+            showAddEmail: false,
+            addedEmail: ""
         };
     }
 
@@ -47,15 +44,67 @@ class ContactDetails extends React.Component {
         console.log("delete")
     }
 
+    handleAddEmailToggle = (e) => {
+        this.setState({
+            showAddEmail: true
+        })
+    }
+
+    handleAddEmail = (e) => {
+        console.log("add email")
+        console.log(this.state.addedEmail)
+
+        let emails = this.state.emails;
+        emails.push(this.state.addedEmail);
+        console.log(emails)
+        this.setState({
+            emails
+        })
+    }
+
+    handleChange = (e) => {
+        this.setState({
+        [e.target.name]: e.target.value,
+        });
+    };
+
+    handleCancelAddContactClick = (e) => {
+        this.setState({
+            showAddEmail: false
+        })
+    }
+
     render() {
         console.log(this.props.contact)
-        
-        let contactFirstName = this.props.contact.firstName;
-        let contactLastName = this.props.contact.lastName;
-        let contactEmails = this.props.contact.emails;
+        let addedEmail = this.state.addedEmail;
+        let contactFirstName = this.state.firstName;
+        let contactLastName = this.state.lastName;
+        let contactEmails = this.state.emails;
         let emailList = contactEmails.map(email => (
             <EmailListItem key={email} email={email} parentCallback={this.handleCallback}/>
         ))
+
+        let addEmailForm =  <li className="grid grid-cols-5 inline-flex text-left text-xl px-8 pb-1">
+                                <div className="flex-1 col-start-2 col-end-3 bg-blue-600 hover:bg-blue-400 rounded-full h-8 w-8" onClick={this.handleAddEmailToggle}>
+                                    <p className="font-bold text-lg text-white static text-center">+</p>
+                                </div>
+                                <p className="col-start-3 col-end-5 flex-1 pr-4 text-blue-600">Add Email</p>
+                            </li>
+        
+        if (this.state.showAddEmail === true) {
+            addEmailForm =  <div className="mb-4">
+                                <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="emailAdd">
+                                    Email
+                                </label>
+                                <input value={this.state.addedEmail} onChange={this.handleChange} name="addedEmail" className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="addedEmail"/>
+                                <button onClick={this.handleAddEmail} className="shadow bg-blue-600 hover:bg-blue-400 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded" type="button">
+                                    Add Email
+                                </button>
+                                <button onClick={this.handleCancelAddContactClick} className="shadow border-2 border-blue-600 hover:border-blue-400 focus:shadow-outline focus:outline-none text-black font-bold py-2 px-4 rounded" type="button">
+                                    Cancel
+                                </button>
+                            </div>
+        }
         
         return(
             // requirements:
@@ -79,7 +128,7 @@ class ContactDetails extends React.Component {
                             <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="firstName">
                                 First Name
                             </label>
-                            <input value={contactFirstName} className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="firstName"/>
+                            <input onChange={this.handleChange} value={contactFirstName} name="firstName" className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="firstName"/>
                         </div>
                 </div>
                 {/* email list */}
@@ -89,7 +138,9 @@ class ContactDetails extends React.Component {
                     </label>
                     <ul>
                         {emailList}
+                        {addEmailForm}
                     </ul>
+
                 </div>
                 {/* delete button */}
                 <div className="relative">
@@ -104,7 +155,7 @@ class ContactDetails extends React.Component {
                         <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="firstName">
                             Last Name
                         </label>
-                        <input value={contactLastName} className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="firstName"/>
+                        <input onChange={this.handleChange} value={contactLastName} name="lastName" className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="firstName"/>
                     </div>    
                 </div>                
                 <div className="row-span-2"></div>
