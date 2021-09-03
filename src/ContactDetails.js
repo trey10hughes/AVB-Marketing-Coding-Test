@@ -55,7 +55,6 @@ class ContactDetails extends React.Component {
             method: 'PUT',
             headers: {'Content-Type':'application/json'},
             body: JSON.stringify({
-                // hardcoded placeholder for now, will fill out with values from input
                 firstName : this.state.firstName,
                 lastName : this.state.lastName,
                 emails : this.state.emails
@@ -66,6 +65,13 @@ class ContactDetails extends React.Component {
 
     handleDeleteClick = (e) => {
         console.log("delete")
+        let id = this.state.id
+        let url = "https://avb-contacts-api.herokuapp.com/contacts/" + id.toString()
+        fetch(url, {
+            method: 'DELETE',
+            headers: {'Content-Type':'application/json'}
+        })
+        this.props.parentCallback()
     }
 
     handleAddEmailToggle = (e) => {
