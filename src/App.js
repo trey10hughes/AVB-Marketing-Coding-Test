@@ -32,7 +32,7 @@ class App extends React.Component {
     let contactSelected = this.state.contactSelected;
     let contactDetails = null;
     if (contactSelected !== null) {
-      contactDetails = <ContactDetails contact={contactSelected} parentCallback={this.handleClearCallback}></ContactDetails>
+      contactDetails = <ContactDetails parentCallback={this.handleClearCallback}></ContactDetails>
     }
     return (
       <div className="App">

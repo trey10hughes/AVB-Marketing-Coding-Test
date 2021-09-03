@@ -72,7 +72,7 @@ class Contacts extends React.Component {
                 {/* figure out how to get this to render without moving the above portion up */}
                 
                 <div className="overflow-y-scroll">
-                    <ContactList parentCallback={this.handleCallback}/>
+                    <ContactList parentCallback={this.handleCallback} contactSelected={this.props.contactSelected}/>
                 </div>
                 
             </div>

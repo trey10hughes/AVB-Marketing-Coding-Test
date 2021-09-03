@@ -33,9 +33,6 @@ class ContactList extends React.Component {
 
     handleContactClick = (e) => {
 
-        this.setState({
-            
-        })
         console.log(e.target.id);
         let id = e.target.id
 
