@@ -14,6 +14,7 @@ class App extends React.Component {
   }
 
   handleCallback = (childData) => {
+    console.log('app')
     console.log(childData)
     this.setState({
       contactSelected: childData
@@ -28,7 +29,7 @@ class App extends React.Component {
   }
 
   render() {
-    const contactSelected = this.state.contactSelected;
+    let contactSelected = this.state.contactSelected;
     let contactDetails = null;
     if (contactSelected !== null) {
       contactDetails = <ContactDetails contact={contactSelected} parentCallback={this.handleClearCallback}></ContactDetails>

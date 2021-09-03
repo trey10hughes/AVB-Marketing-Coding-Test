@@ -20,7 +20,7 @@ class AddContactForm extends React.Component {
 
     handleAddContactClick = (e) => {
         console.log(this.state)
-        fetch("https://avb-contacts-api.herokuapp.com/contacts", {
+        fetch("https://avb-contacts-api.herokuapp.com/contacts/", {
             method: 'POST',
             headers: {'Content-Type':'application/json'},
             body: JSON.stringify({

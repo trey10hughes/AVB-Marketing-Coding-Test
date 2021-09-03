@@ -6,6 +6,7 @@ class ContactDetails extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
+            id: this.props.contact.id,
             firstName: this.props.contact.firstName,
             lastName: this.props.contact.lastName,
             emails: this.props.contact.emails,
@@ -14,7 +15,16 @@ class ContactDetails extends React.Component {
         };
     }
 
-
+    componentDidUpdate(prevProps) {
+        if (this.props.contact.id !== prevProps.contact.id) {
+          this.setState({
+            id: this.props.contact.id,
+            firstName: this.props.contact.firstName,
+            lastName: this.props.contact.lastName,
+            emails: this.props.contact.emails
+          });
+        }
+      }
 
     handleCallback = (childData) => {
         console.log(childData);
@@ -38,6 +48,20 @@ class ContactDetails extends React.Component {
 
     handleSaveClick = (e) => {
         console.log("save")
+        console.log(this.state)
+        let id = this.state.id
+        let url = "https://avb-contacts-api.herokuapp.com/contacts/" + id.toString()
+        fetch(url, {
+            method: 'PUT',
+            headers: {'Content-Type':'application/json'},
+            body: JSON.stringify({
+                // hardcoded placeholder for now, will fill out with values from input
+                firstName : this.state.firstName,
+                lastName : this.state.lastName,
+                emails : this.state.emails
+            })
+        })
+        this.props.parentCallback()
     }
 
     handleDeleteClick = (e) => {
@@ -75,11 +99,16 @@ class ContactDetails extends React.Component {
     }
 
     render() {
+        console.log('details')
         console.log(this.props.contact)
-        let addedEmail = this.state.addedEmail;
-        let contactFirstName = this.state.firstName;
-        let contactLastName = this.state.lastName;
-        let contactEmails = this.state.emails;
+        let addedEmail = this.props.contact.addedEmail;
+        let contactFirstName = this.props.contact.firstName;
+        let contactLastName = this.props.contact.lastName;
+        let contactEmails = this.props.contact.emails;
+
+        let firstName = this.state.firstName
+        let lastName = this.state.lastName
+
         let emailList = contactEmails.map(email => (
             <EmailListItem key={email} email={email} parentCallback={this.handleCallback}/>
         ))
@@ -96,7 +125,7 @@ class ContactDetails extends React.Component {
                                 <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="emailAdd">
                                     Email
                                 </label>
-                                <input value={this.state.addedEmail} onChange={this.handleChange} name="addedEmail" className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="addedEmail"/>
+                                <input value={addedEmail} onChange={this.handleChange} name="addedEmail" className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="addedEmail"/>
                                 <button onClick={this.handleAddEmail} className="shadow bg-blue-600 hover:bg-blue-400 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded" type="button">
                                     Add Email
                                 </button>
@@ -128,7 +157,7 @@ class ContactDetails extends React.Component {
                             <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="firstName">
                                 First Name
                             </label>
-                            <input onChange={this.handleChange} value={contactFirstName} name="firstName" className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="firstName"/>
+                            <input onChange={this.handleChange} value={firstName} name="firstName" className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="firstName"/>
                         </div>
                 </div>
                 {/* email list */}
@@ -155,7 +184,7 @@ class ContactDetails extends React.Component {
                         <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="firstName">
                             Last Name
                         </label>
-                        <input onChange={this.handleChange} value={contactLastName} name="lastName" className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="firstName"/>
+                        <input onChange={this.handleChange} value={lastName} name="lastName" className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="firstName"/>
                     </div>    
                 </div>                
                 <div className="row-span-2"></div>
