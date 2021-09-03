@@ -17,6 +17,8 @@ class ContactDetails extends React.Component {
         };
     }
 
+
+
     handleCallback = (childData) => {
         console.log(childData);
         //remove the email in childData from the emails array
@@ -31,28 +33,29 @@ class ContactDetails extends React.Component {
         });
     }
 
-    render() {
+    handleCancelClick = (e) => {
+        console.log("cancel")
+        // change the contact prop that is passed to this component to null, closing the window
+        this.props.parentCallback()
+    }
 
+    handleSaveClick = (e) => {
+        console.log("save")
+    }
+
+    handleDeleteClick = (e) => {
+        console.log("delete")
+    }
+
+    render() {
         console.log(this.props.contact)
         
-        let contactFirstName = null;
-        let contactLastName = null;
-        let contactEmails = null;
-        let emailList = null;
-
-        if(this.props.contact) {
-            contactFirstName = this.props.contact.firstName;
-            contactLastName = this.props.contact.lastName;
-            contactEmails = this.props.contact.emails;
-            emailList = contactEmails.map(email => (
-                <EmailListItem email={email} parentCallback={this.handleCallback}/>
-            ))
-        } else {
-            contactFirstName = null
-            contactLastName = null;
-            contactEmails = null;
-
-        }
+        let contactFirstName = this.props.contact.firstName;
+        let contactLastName = this.props.contact.lastName;
+        let contactEmails = this.props.contact.emails;
+        let emailList = contactEmails.map(email => (
+            <EmailListItem key={email} email={email} parentCallback={this.handleCallback}/>
+        ))
         
         return(
             // requirements:
@@ -69,6 +72,7 @@ class ContactDetails extends React.Component {
                 <div className="row-span-4"></div>
 
                 {/* first name input */}
+
                 
                 <div className="relative">
                         <div className="absolute mb-4 inset-x-0 bottom-0">
@@ -80,26 +84,40 @@ class ContactDetails extends React.Component {
                 </div>
                 {/* email list */}
                 <div className="row-span-2">
+                    <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="emails">
+                        Emails
+                    </label>
                     <ul>
                         {emailList}
                     </ul>
                 </div>
                 {/* delete button */}
-                <div className="bg-blue-100">{contactFirstName}</div>
+                <div className="relative">
+                    <button onClick={this.handleDeleteClick} className="absolute inset-x-0 left-0 w-2/5 shadow bg-red-600 hover:bg-red-400 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded" type="button">
+                        Delete
+                    </button>
+                </div>
 
                 {/* last name input */}
                 <div className="relative">
-                    <div className="absolute mb-4 inset-x-0 bottom-0 mb-4">
+                    <div className="absolute mb-4 inset-x-0 bottom-0">
                         <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="firstName">
                             Last Name
                         </label>
                         <input value={contactLastName} className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="firstName"/>
                     </div>    
                 </div>                
-                <div className="bg-blue-100 row-span-2">{contactFirstName}</div>
-                {/* cancel and delete buttons */}
+                <div className="row-span-2"></div>
                 
-                <div className="bg-blue-100">{contactFirstName}</div>
+                {/* cancel and save buttons */}
+                <div className="relative">
+                    <button onClick={this.handleCancelClick} className="absolute left-0 w-2/5 shadow border-2 border-blue-600 hover:border-blue-400 focus:shadow-outline focus:outline-none text-black font-bold py-2 px-4 rounded" type="button">
+                        Cancel
+                    </button>
+                    <button onClick={this.handleSaveClick} className="absolute right-0 w-2/5 shadow bg-blue-600 hover:bg-blue-400 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded" type="button">
+                        Save
+                    </button>
+                </div>
 
                 <div className="row-span-4"></div>
             </form>

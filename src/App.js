@@ -21,8 +21,18 @@ class App extends React.Component {
     console.log(this.state)
   }
 
+  handleClearCallback = () => {
+    this.setState({
+      contactSelected: null
+    });
+  }
+
   render() {
     const contactSelected = this.state.contactSelected;
+    let contactDetails = null;
+    if (contactSelected !== null) {
+      contactDetails = <ContactDetails contact={contactSelected} parentCallback={this.handleClearCallback}></ContactDetails>
+    }
     return (
       <div className="App">
         <header className="App-header bg-blue-600 shadow-lg border-b-2">
@@ -36,7 +46,7 @@ class App extends React.Component {
           <div className="contactDetails object-right col-span-4 col-start-2">
             {/* this is the div that will hold more info about a selected contact */}
             {/* this will allow customers to add and delete emails from a contact */}
-            <ContactDetails contact={contactSelected}></ContactDetails>
+            {contactDetails}
           </div>
         </div>
       </div>

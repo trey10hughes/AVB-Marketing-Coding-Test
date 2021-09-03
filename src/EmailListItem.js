@@ -29,6 +29,7 @@ class EmailListItem extends React.Component {
     render() {
         let email = this.state.email;
         let deleteButton = null;
+        console.log(email)
 
         if (this.state.showDeleteButton === true) {
             deleteButton =  <div className="flex-1 bg-red-600 hover:bg-red-400 rounded-full h-7 w-7" onClick={this.handleDeleteClick}>
